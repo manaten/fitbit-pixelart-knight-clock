@@ -1,3 +1,11 @@
 <svg class="background">
-  <text id="myLabel" />
+
+  <!-- heartbeat -->
+  <section x="15" y="12" width="60" height="21">
+    <image id="heartbeat_icon" x="0" y="0" width="21" height="21" href="images/heartbeat_1.png" load="sync" />
+    <image id="heartbeat_num1" x="24" y="0" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="heartbeat_num2" x="24" y="0" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="heartbeat_num3" x="24" y="0" width="9" height="15" href="images/num_s_0.png" load="sync" />
+  </section>
+
 </svg>

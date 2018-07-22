@@ -1,9 +1,21 @@
 {
   "fitbit": {
+    "appUUID": "ef439002-cc14-4238-98d9-e60b2e99b4e0",
     "appType": "clockface",
+    "appDisplayName": "pixelart-clock",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [
+      "access_heart_rate"
+    ],
     "buildTargets": [
       "higgs",
       "meson"
-    ]
+    ],
+    "i18n": {
+      "en": {
+        "name": "pixelart-clock"
+      }
+    }
   }
 }
