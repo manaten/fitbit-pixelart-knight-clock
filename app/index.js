@@ -6,26 +6,40 @@ import { battery } from "power";
 
 import * as util from "../common/utils";
 
-// // heart rate
-// const heartRateLabel = document.getElementById("heartRateLabel");
-// const heartRateSensor = new HeartRateSensor();
-// heartRateSensor.onreading = () => {
-//   heartRateLabel.text = util.monoDigits(heartRateSensor.heartRate || 0, false);
-//   heartRateSensor.stop();
-// }
-// function updateHartRate() {
-//   heartRateSensor.start();
-// }
+// heart rate
+const heartBeatIcon = document.getElementById("heartBeatIcon");
+const heartBeatNum1 = document.getElementById("heartBeatNum1");
+const heartBeatNum2 = document.getElementById("heartBeatNum2");
+const heartBeatNum3 = document.getElementById("heartBeatNum3");
+const heartRateSensor = new HeartRateSensor();
+heartRateSensor.onreading = () => {
+  heartRateSensor.stop();
+}
+function updateHartRate(date) {
+  const frame = date.getSeconds() % 2 === 0;
+  const haertRate = heartRateSensor.heartRate || 0;
+
+  heartBeatIcon.href = `images/heartbeat_${frame ? '1' : '2'}.png`;
+  heartRateSensor.start();
+}
 
 
 // // battery
-// const batteryLevel = document.getElementById("batteryLevel");
-// const batteryLabel = document.getElementById("batteryLabel");
-// function updateBattery() {
-//   batteryLevel.width = Math.round(battery.chargeLevel * 30 / 100);
-//   batteryLevel.style.fill = chargeLevelToColor(battery.chargeLevel);
-//   batteryLabel.text = util.monoDigits(battery.chargeLevel) + '%';
-// }
+const batteryIcon = document.getElementById("batteryIcon");
+const batteryNum1 = document.getElementById("batteryNum1");
+const batteryNum2 = document.getElementById("batteryNum2");
+const batteryNum3 = document.getElementById("batteryNum3");
+function updateBattery() {
+  const {chargeLevel} = battery;
+  if (chargeLevel >= 60) {
+    batteryIcon.href = "images/battery_full.png";
+  } else if (chargeLevel >= 20) {
+    batteryIcon.href = "images/battery_mid.png";
+  } else {
+    batteryIcon.href = "images/battery_low.png";
+  } 
+  
+}
 
 
 // // time & date
@@ -49,9 +63,8 @@ const img = document.getElementById("img");
 clock.granularity = "seconds";
 clock.ontick = evt => {
   // if (display.on) {
-    img.href = "images/fitbit2.png";
-    // updateHartRate();
-    // updateBattery();
+    updateHartRate(evt.date);
+    updateBattery();
     // updateTime(evt.date);
   // }
 }
