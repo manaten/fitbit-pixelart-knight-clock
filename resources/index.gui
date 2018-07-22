@@ -3,18 +3,18 @@
   <!-- heartbeat -->
   <section x="15" y="12" width="60" height="21">
     <image id="heartBeatIcon" x="0" y="0" width="21" height="21" href="images/heartbeat_1.png" load="sync" />
-    <image id="heartBeatNum1" x="24" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
-    <image id="heartBeatNum2" x="36" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
-    <image id="heartBeatNum3" x="48" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="heartBeatNum1" x="27" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="heartBeatNum2" x="39" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="heartBeatNum3" x="51" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
   </section>
   
   <!-- battery -->
   <section x="100%-81" y="12" width="69" height="18">
     <image id="batteryIcon" x="0" y="0" width="12" height="18" href="images/battery_full.png" load="sync" />
-    <image id="batteryNum1" x="15" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
-    <image id="batteryNum2" x="27" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
-    <image id="batteryNum3" x="39" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
-    <image x="51" y="3" width="15" height="15" href="images/num_s_percent.png" load="sync" />
+    <image id="batteryNum1" x="18" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="batteryNum2" x="30" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image id="batteryNum3" x="42" y="3" width="9" height="15" href="images/num_s_0.png" load="sync" />
+    <image x="54" y="3" width="15" height="15" href="images/num_s_percent.png" load="sync" />
   </section>
 
   <!-- time (hour & minute) -->

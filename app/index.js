@@ -76,9 +76,9 @@ function updateTime(date) {
   hourNum2.href = `images/num_l_${num2}.png`;
   minuteNum1.href = `images/num_l_${num3}.png`;
   minuteNum2.href = `images/num_l_${num4}.png`;
-}
 
-const img = document.getElementById("img");
+  colon.style.display = (date.getSeconds() % 2 === 0) ? "none" : "inline";
+}
 
 clock.granularity = "seconds";
 clock.ontick = evt => {
