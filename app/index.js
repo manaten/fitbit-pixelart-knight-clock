@@ -29,14 +29,14 @@ function updateHartRate(date) {
   const second = date.getSeconds();
   const frame = second % 2 === 0;
   heartBeatIcon.href = `images/heartbeat_${frame ? '1' : '2'}.png`;
-  
-  if (second === 0) { 
-    heartRateSensor.start(); 
+
+  if (second === 0) {
+    heartRateSensor.start();
   }
 }
 
 
-// // battery
+// battery
 const batteryIcon = document.getElementById('batteryIcon');
 const batteryNum1 = document.getElementById('batteryNum1');
 const batteryNum2 = document.getElementById('batteryNum2');
