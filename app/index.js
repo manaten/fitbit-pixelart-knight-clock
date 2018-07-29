@@ -1,17 +1,17 @@
-import clock from "clock";
-import document from "document";
-import display from "display";
-import { preferences } from "user-settings";
-import { HeartRateSensor } from "heart-rate";
-import { battery } from "power";
+import clock from 'clock';
+import document from 'document';
+import { preferences } from 'user-settings';
+import { display } from 'display';
+import { HeartRateSensor } from 'heart-rate';
+import { battery } from 'power';
 
-import * as util from "../common/utils";
+// import * as util from '../common/utils';
 
 // heart rate
-const heartBeatIcon = document.getElementById("heartBeatIcon");
-const heartBeatNum1 = document.getElementById("heartBeatNum1");
-const heartBeatNum2 = document.getElementById("heartBeatNum2");
-const heartBeatNum3 = document.getElementById("heartBeatNum3");
+const heartBeatIcon = document.getElementById('heartBeatIcon');
+const heartBeatNum1 = document.getElementById('heartBeatNum1');
+const heartBeatNum2 = document.getElementById('heartBeatNum2');
+const heartBeatNum3 = document.getElementById('heartBeatNum3');
 const heartRateSensor = new HeartRateSensor();
 heartRateSensor.onreading = () => {
   const heartRate = (heartRateSensor.heartRate || 0);
@@ -24,27 +24,31 @@ heartRateSensor.onreading = () => {
   heartBeatNum3.href = `images/num_s_${num3}.png`;
 
   heartRateSensor.stop();
-}
+};
 function updateHartRate(date) {
-  const frame = date.getSeconds() % 2 === 0;
+  const second = date.getSeconds();
+  const frame = second % 2 === 0;
   heartBeatIcon.href = `images/heartbeat_${frame ? '1' : '2'}.png`;
-  heartRateSensor.start();
+  
+  if (second === 0) { 
+    heartRateSensor.start(); 
+  }
 }
 
 
 // // battery
-const batteryIcon = document.getElementById("batteryIcon");
-const batteryNum1 = document.getElementById("batteryNum1");
-const batteryNum2 = document.getElementById("batteryNum2");
-const batteryNum3 = document.getElementById("batteryNum3");
+const batteryIcon = document.getElementById('batteryIcon');
+const batteryNum1 = document.getElementById('batteryNum1');
+const batteryNum2 = document.getElementById('batteryNum2');
+const batteryNum3 = document.getElementById('batteryNum3');
 function updateBattery() {
   const { chargeLevel } = battery;
   if (chargeLevel >= 60) {
-    batteryIcon.href = "images/battery_full.png";
+    batteryIcon.href = 'images/battery_full.png';
   } else if (chargeLevel >= 20) {
-    batteryIcon.href = "images/battery_mid.png";
+    batteryIcon.href = 'images/battery_mid.png';
   } else {
-    batteryIcon.href = "images/battery_low.png";
+    batteryIcon.href = 'images/battery_low.png';
   }
   const num1 = Math.floor(chargeLevel / 100);
   const num2 = Math.floor(chargeLevel / 10) % 10;
@@ -56,14 +60,14 @@ function updateBattery() {
 
 
 // time
-const hourNum1 = document.getElementById("hourNum1");
-const hourNum2 = document.getElementById("hourNum2");
-const colon = document.getElementById("colon");
-const minuteNum1 = document.getElementById("minuteNum1");
-const minuteNum2 = document.getElementById("minuteNum2");
+const hourNum1 = document.getElementById('hourNum1');
+const hourNum2 = document.getElementById('hourNum2');
+const colon = document.getElementById('colon');
+const minuteNum1 = document.getElementById('minuteNum1');
+const minuteNum2 = document.getElementById('minuteNum2');
 function updateTime(date) {
   let hours = date.getHours();
-  if (preferences.clockDisplay === "12h") {
+  if (preferences.clockDisplay === '12h') {
     // 12h format
     hours = hours % 12 || 12;
   }
@@ -77,14 +81,18 @@ function updateTime(date) {
   minuteNum1.href = `images/num_l_${num3}.png`;
   minuteNum2.href = `images/num_l_${num4}.png`;
 
-  colon.style.display = (date.getSeconds() % 2 === 0) ? "none" : "inline";
+  colon.style.display = (date.getSeconds() % 2 === 0) ? 'none' : 'inline';
 }
 
-clock.granularity = "seconds";
+clock.granularity = 'seconds';
 clock.ontick = evt => {
-  // if (display.on) {
-    updateHartRate(evt.date);
+  const { date } = evt;
+  if (date.getSeconds() === 0) {
+    updateHartRate(date);
     updateBattery();
-    updateTime(evt.date);
-  // }
-}
+    updateTime(date);
+  } else if (display.on) {
+    updateHartRate(date);
+    updateTime(date);
+  }
+};

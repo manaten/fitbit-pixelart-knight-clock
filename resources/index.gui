@@ -18,7 +18,7 @@
   </section>
 
   <!-- time (hour & minute) -->
-  <section x="30" y="108" width="264" height="198">
+  <section x="50%-120" y="50%-45" width="237" height="93">
     <image id="hourNum1" x="0" y="0" width="45" height="93" href="images/num_l_0.png" load="sync" />
     <image id="hourNum2" x="57" y="0" width="45" height="93" href="images/num_l_0.png" load="sync" />
     <image id="colon" x="114" y="0" width="9" height="93" href="images/num_l_colon.png" load="sync" />
