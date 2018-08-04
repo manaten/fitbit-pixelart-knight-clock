@@ -2,7 +2,7 @@
   "fitbit": {
     "appUUID": "ef439002-cc14-4238-98d9-e60b2e99b4e0",
     "appType": "clockface",
-    "appDisplayName": "pixelart-clock",
+    "appDisplayName": "pixelart-knight-clock",
     "iconFile": "resources/icon.png",
     "wipeColor": "",
     "requestedPermissions": [
@@ -14,7 +14,7 @@
     ],
     "i18n": {
       "en": {
-        "name": "pixelart-clock"
+        "name": "pixelart-knight-clock"
       }
     }
   },
