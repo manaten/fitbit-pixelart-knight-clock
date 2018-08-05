@@ -75,25 +75,30 @@ function updateCalender(date) {
 }
 
 
-// time
+// hours & minutes
 const hourNum1 = document.getElementById('hourNum1');
 const hourNum2 = document.getElementById('hourNum2');
 const minuteNum1 = document.getElementById('minuteNum1');
 const minuteNum2 = document.getElementById('minuteNum2');
-const secondNum1 = document.getElementById('secondNum1');
-const secondNum2 = document.getElementById('secondNum2');
-function updateTime(date) {
+function updateHoursAndMinutes(date) {
   let hours = date.getHours();
   if (preferences.clockDisplay === '12h') {
     // 12h format
     hours = hours % 12 || 12;
   }
   const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
   hourNum1.image = `images/num_l_${getNumberOfPlace(hours, 1)}.png`;
   hourNum2.image = `images/num_l_${getNumberOfPlace(hours, 2)}.png`;
   minuteNum1.image = `images/num_l_${getNumberOfPlace(minutes, 1)}.png`;
   minuteNum2.image = `images/num_l_${getNumberOfPlace(minutes, 2)}.png`;
+}
+
+
+// seconds
+const secondNum1 = document.getElementById('secondNum1');
+const secondNum2 = document.getElementById('secondNum2');
+function updateSeconds(date) {
+  const seconds = date.getSeconds();
   secondNum1.image = `images/num_s_${getNumberOfPlace(seconds, 1)}.png`;
   secondNum2.image = `images/num_s_${getNumberOfPlace(seconds, 2)}.png`;
 
@@ -131,17 +136,23 @@ function updateAnimation(date) {
 
 
 let initialized = false;
+let lastUpdateTime = 0;
+const UPDATE_INTERVAL = 60 * 1000;
 clock.granularity = 'seconds';
 clock.ontick = evt => {
   const { date } = evt;
-  updateTime(date);
-  if (date.getSeconds() === 0 || !initialized) {
+  const now = date.getTime();
+  if (!initialized || (now - lastUpdateTime > UPDATE_INTERVAL)) {
+    updateHoursAndMinutes(date);
     updateHartRate();
     updateBattery();
     updateCalender(date);
     initialized = true;
+    lastUpdateTime = now;
   }
+
   if (display.on) {
+    updateSeconds(date);
     updateAnimation(date);
   }
 };
