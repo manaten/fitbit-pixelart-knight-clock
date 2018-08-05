@@ -23,9 +23,9 @@ const heartBeatNum3 = document.getElementById('heartBeatNum3');
 const heartRateSensor = new HeartRateSensor();
 heartRateSensor.onreading = () => {
   const heartRate = (heartRateSensor.heartRate || 0);
-  heartBeatNum1.href = `images/num_s_${getNumberOfPlace(heartRate, 1)}.png`;
-  heartBeatNum2.href = `images/num_s_${getNumberOfPlace(heartRate, 2)}.png`;
-  heartBeatNum3.href = `images/num_s_${getNumberOfPlace(heartRate, 3)}.png`;
+  heartBeatNum1.image = `images/num_s_${getNumberOfPlace(heartRate, 1)}.png`;
+  heartBeatNum2.image = `images/num_s_${getNumberOfPlace(heartRate, 2)}.png`;
+  heartBeatNum3.image = `images/num_s_${getNumberOfPlace(heartRate, 3)}.png`;
 
   heartRateSensor.stop();
 };
@@ -42,15 +42,15 @@ const batteryNum3 = document.getElementById('batteryNum3');
 function updateBattery() {
   const { chargeLevel } = battery;
   if (chargeLevel >= 60) {
-    batteryIcon.href = 'images/battery_full.png';
+    batteryIcon.image = 'images/battery_full.png';
   } else if (chargeLevel >= 20) {
-    batteryIcon.href = 'images/battery_mid.png';
+    batteryIcon.image = 'images/battery_mid.png';
   } else {
-    batteryIcon.href = 'images/battery_low.png';
+    batteryIcon.image = 'images/battery_low.png';
   }
-  batteryNum1.href = `images/num_s_${getNumberOfPlace(chargeLevel, 1)}.png`;
-  batteryNum2.href = `images/num_s_${getNumberOfPlace(chargeLevel, 2)}.png`;
-  batteryNum3.href = `images/num_s_${getNumberOfPlace(chargeLevel, 3)}.png`;
+  batteryNum1.image = `images/num_s_${getNumberOfPlace(chargeLevel, 1)}.png`;
+  batteryNum2.image = `images/num_s_${getNumberOfPlace(chargeLevel, 2)}.png`;
+  batteryNum3.image = `images/num_s_${getNumberOfPlace(chargeLevel, 3)}.png`;
 }
 
 
@@ -65,13 +65,13 @@ const yearNum4 = document.getElementById('yearNum4');
 function updateCalender(date) {
   const day = date.getDate();
   const year = date.getFullYear();
-  dayNum1.href = `images/num_sy_${getNumberOfPlace(day, 1)}.png`;
-  dayNum2.href = `images/num_sy_${getNumberOfPlace(day, 2)}.png`;
-  month.href = `images/mon_${date.getMonth() + 1}.png`;
-  yearNum1.href = `images/num_sy_${getNumberOfPlace(year, 1)}.png`;
-  yearNum2.href = `images/num_sy_${getNumberOfPlace(year, 2)}.png`;
-  yearNum3.href = `images/num_sy_${getNumberOfPlace(year, 3)}.png`;
-  yearNum4.href = `images/num_sy_${getNumberOfPlace(year, 4)}.png`;
+  dayNum1.image = `images/num_sy_${getNumberOfPlace(day, 1)}.png`;
+  dayNum2.image = `images/num_sy_${getNumberOfPlace(day, 2)}.png`;
+  month.image = `images/mon_${date.getMonth() + 1}.png`;
+  yearNum1.image = `images/num_sy_${getNumberOfPlace(year, 1)}.png`;
+  yearNum2.image = `images/num_sy_${getNumberOfPlace(year, 2)}.png`;
+  yearNum3.image = `images/num_sy_${getNumberOfPlace(year, 3)}.png`;
+  yearNum4.image = `images/num_sy_${getNumberOfPlace(year, 4)}.png`;
 }
 
 
@@ -90,12 +90,12 @@ function updateTime(date) {
   }
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
-  hourNum1.href = `images/num_l_${getNumberOfPlace(hours, 1)}.png`;
-  hourNum2.href = `images/num_l_${getNumberOfPlace(hours, 2)}.png`;
-  minuteNum1.href = `images/num_l_${getNumberOfPlace(minutes, 1)}.png`;
-  minuteNum2.href = `images/num_l_${getNumberOfPlace(minutes, 2)}.png`;
-  secondNum1.href = `images/num_s_${getNumberOfPlace(seconds, 1)}.png`;
-  secondNum2.href = `images/num_s_${getNumberOfPlace(seconds, 2)}.png`;
+  hourNum1.image = `images/num_l_${getNumberOfPlace(hours, 1)}.png`;
+  hourNum2.image = `images/num_l_${getNumberOfPlace(hours, 2)}.png`;
+  minuteNum1.image = `images/num_l_${getNumberOfPlace(minutes, 1)}.png`;
+  minuteNum2.image = `images/num_l_${getNumberOfPlace(minutes, 2)}.png`;
+  secondNum1.image = `images/num_s_${getNumberOfPlace(seconds, 1)}.png`;
+  secondNum2.image = `images/num_s_${getNumberOfPlace(seconds, 2)}.png`;
 
 }
 
@@ -115,10 +115,10 @@ function updateAnimation(date) {
   const seconds = Math.floor(date.getTime() / 1000);
   const frame = seconds % 2 === 0;
   colon.style.display = frame ? 'none' : 'inline';
-  heartBeatIcon.href = `images/heartbeat_${frame ? '1' : '2'}.png`;
+  heartBeatIcon.image = `images/heartbeat_${frame ? '1' : '2'}.png`;
 
   const charFrame = seconds % 4 + 1;
-  character.href = `images/char_2_${charFrame === 4 ? 2 : charFrame}.png`;
+  character.image = `images/char_2_${charFrame === 4 ? 2 : charFrame}.png`;
 
   obj1.x = (seconds % 120 - 10) * 3;
   obj2.x = ((seconds - 20) % 130 - 10) * 3;
@@ -134,14 +134,14 @@ let initialized = false;
 clock.granularity = 'seconds';
 clock.ontick = evt => {
   const { date } = evt;
+  updateTime(date);
   if (date.getSeconds() === 0 || !initialized) {
     updateHartRate();
     updateBattery();
-    updateTime(date);
     updateCalender(date);
-  } else if (display.on) {
-    updateTime(date);
+    initialized = true;
+  }
+  if (display.on) {
     updateAnimation(date);
   }
-  initialized = true;
 };
