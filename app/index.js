@@ -5,7 +5,6 @@ import { display } from 'display';
 import { HeartRateSensor } from 'heart-rate';
 import { battery } from 'power';
 
-// import * as util from '../common/utils';
 
 function getNumberOfPlace(num, place) {
   switch (place) {
@@ -105,14 +104,29 @@ function updateTime(date) {
 const colon = document.getElementById('colon');
 const heartBeatIcon = document.getElementById('heartBeatIcon');
 const character = document.getElementById('character');
+const obj1 = document.getElementById('obj1');
+const obj2 = document.getElementById('obj2');
+const obj3 = document.getElementById('obj3');
+const obj4 = document.getElementById('obj4');
+const obj5 = document.getElementById('obj5');
+const obj6 = document.getElementById('obj6');
+const obj7 = document.getElementById('obj7');
 function updateAnimation(date) {
-  const seconds = date.getSeconds();
+  const seconds = Math.floor(date.getTime() / 1000);
   const frame = seconds % 2 === 0;
   colon.style.display = frame ? 'none' : 'inline';
   heartBeatIcon.href = `images/heartbeat_${frame ? '1' : '2'}.png`;
 
   const charFrame = seconds % 4 + 1;
   character.href = `images/char_2_${charFrame === 4 ? 2 : charFrame}.png`;
+
+  obj1.x = (seconds % 120 - 10) * 3;
+  obj2.x = ((seconds - 20) % 130 - 10) * 3;
+  obj3.x = ((seconds - 30) % 140) * 3;
+  obj4.x = ((seconds - 40) % 150) * 3;
+  obj5.x = ((seconds - 50) % 160) * 3;
+  obj6.x = ((seconds - 60) % 170) * 3;
+  obj7.x = ((seconds - 70) % 180) * 3;
 }
 
 

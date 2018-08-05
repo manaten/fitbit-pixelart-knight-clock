@@ -45,7 +45,16 @@
 
   <!-- caracter -->
   <section x="0" y="100%-42" width="300" height="42">
-    <image id="character" x="50%-18" y="0" width="36" height="39" href="images/char_2_1.png" load="sync" />
     <rect x="0" y="39" width="100%" height="3" fill="#6CCE41" />
+
+    <image id="obj1" x="0" y="100%-6" width="3" height="3" href="images/obj_1.png" load="sync" />
+    <image id="obj2" x="12" y="100%-9" width="3" height="6" href="images/obj_2.png" load="sync" />
+    <image id="obj3" x="24" y="100%-12" width="12" height="9" href="images/obj_3.png" load="sync" />
+    <image id="obj4" x="36" y="100%-6" width="9" height="3" href="images/obj_4.png" load="sync" />
+    <image id="obj5" x="48" y="100%-15" width="9" height="12" href="images/obj_5.png" load="sync" />
+    <image id="obj6" x="60" y="100%-21" width="12" height="18" href="images/obj_6.png" load="sync" />
+    <image id="obj7" x="72" y="100%-27" width="24" height="24" href="images/obj_7.png" load="sync" />
+
+    <image id="character" x="50%-18" y="0" width="36" height="39" href="images/char_2_1.png" load="sync" />
   </section>
 </svg>
