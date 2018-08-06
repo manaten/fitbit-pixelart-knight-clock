@@ -142,8 +142,10 @@ clock.granularity = 'seconds';
 clock.ontick = evt => {
   const { date } = evt;
   const now = date.getTime();
+
+  updateHoursAndMinutes(date);
+
   if (!initialized || (now - lastUpdateTime > UPDATE_INTERVAL)) {
-    updateHoursAndMinutes(date);
     updateHartRate();
     updateBattery();
     updateCalender(date);
