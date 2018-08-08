@@ -106,7 +106,6 @@ function updateSeconds(date) {
 
 
 // animation
-const colon = document.getElementById('colon');
 const heartBeatIcon = document.getElementById('heartBeatIcon');
 const character = document.getElementById('character');
 const obj1 = document.getElementById('obj1');
@@ -119,7 +118,6 @@ const obj7 = document.getElementById('obj7');
 function updateAnimation(date) {
   const seconds = Math.floor(date.getTime() / 1000);
   const frame = seconds % 2 === 0;
-  colon.style.display = frame ? 'none' : 'inline';
   heartBeatIcon.image = `images/heartbeat_${frame ? '1' : '2'}.png`;
 
   const charFrame = seconds % 4 + 1;
